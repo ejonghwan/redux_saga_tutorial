@@ -14,14 +14,20 @@ app.use(express.urlencoded({ extended: true })); // form submit했을떄 urlinco
 
 
 
+app.use(function(req, res, next) {
+    // console.log(req)
+    req.body.hoho = 'hoho1'
+    next();
+})
 
 app.get('/', (req, res) => {
     res.send('aa')
 })
 
 app.post('/test', (req, res) => {
-    console.log(req.body)
-    res.send(req.body)
+    console.log(req.body.hoho)
+    res.status(200).json(req.body)
+    
 })
 
 app.listen(3060, () => {
